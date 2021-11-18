@@ -4,7 +4,7 @@ A dead-simple OpenApi docs server. By default, it uses [Swagger UI](https://gith
 
 ## Compatibilty
 
-This server supports OpenApi specification version 2 or later.
+This server supports OpenAPI specification version 2 or later.
 
 ## Install
 
