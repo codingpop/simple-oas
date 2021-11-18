@@ -11,7 +11,7 @@ This server supports OpenAPI specification version 2 or later.
 The easiest way to install is using go install
 
 ```
-go install github.com/gocardless/simple-swag@latest
+go install github.com/codingpop/simple-oas@latest
 ```
 
 ## Usage
