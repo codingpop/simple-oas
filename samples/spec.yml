@@ -1,0 +1,117 @@
+openapi: 3.0.0
+info:
+  title: DNS
+  version: '1.0'
+  contact:
+    name: Babatunde Adeyemi
+    email: tundewrites@gmail.com
+  description: Drone Navigation System
+servers:
+  - url: 'http://localhost:6543'
+paths:
+  /v1/location:
+    post:
+      summary: Request Location
+      operationId: post-v1-location
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  loc:
+                    type: number
+                required:
+                  - loc
+                x-examples:
+                  example-1:
+                    loc: 65.24
+              examples:
+                example:
+                  value:
+                    loc: 65.24
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  error:
+                    type: string
+                    minLength: 1
+                  fields:
+                    type: array
+                    uniqueItems: true
+                    minItems: 1
+                    items:
+                      required:
+                        - field
+                        - error
+                      properties:
+                        field:
+                          type: string
+                          minLength: 1
+                        error:
+                          type: string
+                          minLength: 1
+                required:
+                  - error
+                  - fields
+                x-examples:
+                  example-1:
+                    error: field validation error
+                    fields:
+                      - field: x
+                        error: x is a required field
+              examples:
+                example:
+                  value:
+                    error: field validation error
+                    fields:
+                      - field: x
+                        error: x is a required field
+      description: Request location data from DNS
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: ''
+              type: object
+              properties:
+                x:
+                  type: string
+                  minLength: 1
+                'y':
+                  type: string
+                  minLength: 1
+                z:
+                  type: string
+                  minLength: 1
+                vel:
+                  type: string
+                  minLength: 1
+              required:
+                - x
+                - 'y'
+                - z
+                - vel
+              x-examples:
+                example-1:
+                  x: '55.93'
+                  'y': '2.9'
+                  z: '4.41'
+                  vel: '2'
+            examples:
+              example:
+                value:
+                  x: '55.93'
+                  'y': '2.9'
+                  z: '4.41'
+                  vel: '2'
+components:
+  schemas: {}
