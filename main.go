@@ -60,7 +60,9 @@ func main() {
 	mux.Handle("/assets/", http.FileServer(http.FS(assets)))
 
 	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		tmpl.Execute(w, data)
+		if err := tmpl.Execute(w, data); err != nil {
+			log.Fatal(err)
+		}
 	})
 
 	log.Printf("Listening on http://%s:%d", *host, *port)
